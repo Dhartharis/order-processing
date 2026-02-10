@@ -1,0 +1,15 @@
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\bin\Debug\net8.0\OrderProcessing.Application.deps.json
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\bin\Debug\net8.0\OrderProcessing.Application.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\bin\Debug\net8.0\OrderProcessing.Application.pdb
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\bin\Debug\net8.0\OrderProcessing.Domain.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\bin\Debug\net8.0\OrderProcessing.Domain.pdb
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\OrderProcessing.Application.csproj.AssemblyReference.cache
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\OrderProcessing.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\OrderProcessing.Application.AssemblyInfoInputs.cache
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\OrderProcessing.Application.AssemblyInfo.cs
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\OrderProcessing.Application.csproj.CoreCompileInputs.cache
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\OrderPro.D38CDE08.Up2Date
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\OrderProcessing.Application.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\refint\OrderProcessing.Application.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\OrderProcessing.Application.pdb
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\ref\OrderProcessing.Application.dll

@@ -1,0 +1,62 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: orderprocessing-db
+    environment:
+      POSTGRES_DB: orderprocessing
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - orderprocessing-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d orderprocessing"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+
+  migrations:
+    build:
+      context: .
+      dockerfile: Dockerfile.Migrator
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__Default: Host=postgres;Port=5432;Database=orderprocessing;Username=postgres;Password=postgres
+    restart: "no"
+
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.Api
+    image: orderprocessing-api
+    container_name: orderprocessing-api
+    depends_on:
+      migrations:
+        condition: service_completed_successfully
+    environment:
+      ConnectionStrings__Default: Host=postgres;Port=5432;Database=orderprocessing;Username=postgres;Password=postgres
+    ports:
+      - "8080:8080"
+
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.Worker
+    image: orderprocessing-worker
+    container_name: orderprocessing-worker
+    depends_on:
+      migrations:
+        condition: service_completed_successfully
+    environment:
+      ConnectionStrings__Default: Host=postgres;Port=5432;Database=orderprocessing;Username=postgres;Password=postgres
+
+
+volumes:
+  orderprocessing-data:

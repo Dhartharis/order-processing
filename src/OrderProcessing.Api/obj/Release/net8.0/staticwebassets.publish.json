@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "LRgojHC7saqRkuFwu0dc2Ll+3NEzMIgQ4kEMyTicQgo=",
+  "Source": "OrderProcessing.Api",
+  "BasePath": "_content/OrderProcessing.Api",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

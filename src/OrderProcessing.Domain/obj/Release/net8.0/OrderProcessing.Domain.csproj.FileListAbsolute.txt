@@ -1,0 +1,11 @@
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\bin\Release\net8.0\OrderProcessing.Domain.deps.json
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\bin\Release\net8.0\OrderProcessing.Domain.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\bin\Release\net8.0\OrderProcessing.Domain.pdb
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Release\net8.0\OrderProcessing.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Release\net8.0\OrderProcessing.Domain.AssemblyInfoInputs.cache
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Release\net8.0\OrderProcessing.Domain.AssemblyInfo.cs
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Release\net8.0\OrderProcessing.Domain.csproj.CoreCompileInputs.cache
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Release\net8.0\OrderProcessing.Domain.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Release\net8.0\refint\OrderProcessing.Domain.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Release\net8.0\OrderProcessing.Domain.pdb
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Release\net8.0\ref\OrderProcessing.Domain.dll

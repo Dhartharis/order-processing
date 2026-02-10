@@ -1,0 +1,28 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+COPY src/*.sln ./
+COPY src/*/*.csproj ./ 
+
+RUN for file in *.csproj; do \
+      mkdir -p src/${file%.csproj} && mv $file src/${file%.csproj}/; \
+    done
+
+COPY src/ ./src/
+
+RUN dotnet restore src/OrderProcessing.Api/OrderProcessing.Api.csproj
+
+RUN dotnet publish src/OrderProcessing.Api/OrderProcessing.Api.csproj \
+    -c Release \
+    -o /app/publish
+
+# ---------- runtime ----------
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
+WORKDIR /app
+
+COPY --from=build /app/publish .
+
+ENV ASPNETCORE_URLS=http://+:8080
+EXPOSE 8080
+
+ENTRYPOINT ["dotnet", "OrderProcessing.Api.dll"]

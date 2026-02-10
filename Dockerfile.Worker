@@ -1,0 +1,25 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+COPY src/*.sln ./
+COPY src/*/*.csproj ./ 
+
+RUN for file in *.csproj; do \
+      mkdir -p src/${file%.csproj} && mv $file src/${file%.csproj}/; \
+    done
+
+COPY src/ ./src/
+
+RUN dotnet restore src/OrderProcessing.Worker/OrderProcessing.Worker.csproj
+
+RUN dotnet publish src/OrderProcessing.Worker/OrderProcessing.Worker.csproj \
+    -c Release \
+    -o /app/publish
+
+# ---------- runtime ----------
+FROM mcr.microsoft.com/dotnet/runtime:8.0
+WORKDIR /app
+
+COPY --from=build /app/publish .
+
+ENTRYPOINT ["dotnet", "OrderProcessing.Worker.dll"]
