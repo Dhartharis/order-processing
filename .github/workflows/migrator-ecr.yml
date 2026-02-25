@@ -1,11 +1,11 @@
-name: Build & Push Worker ECR
+name: Build & Push Migrator ECR
 
 on:
   push:
     paths:
-      - "src/OrderProcessing.Worker/**"
-      - "Dockerfile.Worker"
-      - ".github/workflows/worker-ecr.yml"
+      - "src/OrderProcessing.DbMigrator/**"
+      - "Dockerfile.Migrator"
+      - ".github/workflows/migrator-ecr.yml"
 
 jobs:
   build-and-push:
@@ -25,14 +25,13 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Build and push worker image
-        env: 
+      - name: Build and push migrator image
+        env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: order_processing/order-worker
+          ECR_REPOSITORY: order_processing/order-migrator
           IMAGE_TAG: ${{ github.sha }}
         run: |
-          docker build -f Dockerfile.Worker -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest  
+          docker build -f Dockerfile.Migrator -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-

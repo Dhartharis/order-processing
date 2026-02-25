@@ -17,3 +17,4 @@ C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Infrastru
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Infrastructure\obj\Debug\net8.0\OrderProcessing.Infrastructure.pdb
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Infrastructure\obj\Debug\net8.0\OrderProcessing.Infrastructure.genruntimeconfig.cache
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Infrastructure\obj\Debug\net8.0\ref\OrderProcessing.Infrastructure.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Infrastructure\obj\Debug\net8.0\OrderProcessing.Infrastructure.sourcelink.json

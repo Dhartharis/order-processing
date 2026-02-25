@@ -13,3 +13,4 @@ C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Applicati
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\refint\OrderProcessing.Application.dll
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\OrderProcessing.Application.pdb
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\ref\OrderProcessing.Application.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Application\obj\Debug\net8.0\OrderProcessing.Application.sourcelink.json

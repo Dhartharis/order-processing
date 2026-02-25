@@ -9,3 +9,4 @@ C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\ob
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Debug\net8.0\refint\OrderProcessing.Domain.dll
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Debug\net8.0\OrderProcessing.Domain.pdb
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Debug\net8.0\ref\OrderProcessing.Domain.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Domain\obj\Debug\net8.0\OrderProcessing.Domain.sourcelink.json
