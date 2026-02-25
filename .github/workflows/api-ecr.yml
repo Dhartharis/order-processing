@@ -3,7 +3,7 @@ name: Build & Push API ECR
 on:
   push:
     paths:
-      - "src/OrderProcessing.Api/**"
+      - "OrderProcessing.Api/**"
       - "Dockerfile.Api"
       - ".github/workflows/api-ecr.yml"
 

@@ -3,7 +3,7 @@ name: Build & Push Worker ECR
 on:
   push:
     paths:
-      - "src/OrderProcessing.Worker/**"
+      - "OrderProcessing.Worker/**"
       - "Dockerfile.Worker"
       - ".github/workflows/worker-ecr.yml"
 
