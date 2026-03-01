@@ -44,7 +44,7 @@ jobs:
       # ------------------------
       - name: Deploy API to ECS
         run: |
-          aws ecs update-service
-            --cluster ${{ secrets.ECS_CLUSTER_NAME }}
-            --service ${{ secrets.ECS_API_SERVICE_NAME }}
+          aws ecs update-service \
+            --cluster ${{ secrets.ECS_CLUSTER_NAME }} \
+            --service ${{ secrets.ECS_API_SERVICE_NAME }} \
             --force-new-deployment
