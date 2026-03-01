@@ -15,9 +15,9 @@ builder.Services.AddDbContext<OrderDbContext>(options =>
 );
 
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<CreateOrderHandler>();
-builder.Services.AddScoped<ListOrderHandler>();
-builder.Services.AddScoped<ChangeOrderStatusHandler>();
+builder.Services.AddScoped<ICreateOrderHandler, CreateOrderHandler>();
+builder.Services.AddScoped<IListOrderHandler, ListOrderHandler>();
+builder.Services.AddScoped<IChangeOrderStatusHandler, ChangeOrderStatusHandler>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

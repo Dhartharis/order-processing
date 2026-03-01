@@ -2,7 +2,7 @@ using OrderProcessing.Domain.Orders;
 
 namespace OrderProcessing.Application.Orders.List;
 
-public class ListOrderHandler
+public class ListOrderHandler: IListOrderHandler
 {
     private readonly IOrderRepository _repository;
 

@@ -2,7 +2,7 @@ using OrderProcessing.Domain.Orders;
 
 namespace OrderProcessing.Application.Orders.Create;
 
-public class CreateOrderHandler
+public class CreateOrderHandler: ICreateOrderHandler
 {
     private readonly IOrderRepository _repository;
 

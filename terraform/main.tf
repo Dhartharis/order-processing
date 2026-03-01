@@ -18,7 +18,7 @@ resource "aws_security_group" "rds" {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [data.aws_vpc.default.cidr_block]
   }
 
   egress {
@@ -42,7 +42,6 @@ resource "aws_db_instance" "postgres" {
   engine_version = "16"
 
   instance_class = "db.t3.micro"
-
   allocated_storage = 20
 
   db_name  = "orderprocessing"
@@ -56,6 +55,5 @@ resource "aws_db_instance" "postgres" {
   db_subnet_group_name = aws_db_subnet_group.main.name
 
   publicly_accessible = true
-
   skip_final_snapshot = true
 }

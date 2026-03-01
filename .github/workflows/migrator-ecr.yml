@@ -3,7 +3,9 @@ name: Build & Push Migrator ECR
 on:
   push:
     paths:
-      - "OrderProcessing.DbMigrator/**"
+      - "OrderProcessing.Migrator/**"
+      - "OrderProcessing.Infrastructure/**"
+      - "OrderProcessing.Domain/**"
       - "Dockerfile.Migrator"
       - ".github/workflows/migrator-ecr.yml"
 

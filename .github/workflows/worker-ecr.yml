@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - "OrderProcessing.Worker/**"
+      - "OrderProcessing.Application/**"
+      - "OrderProcessing.Domain/**"
+      - "OrderProcessing.Infrastructure/**"
       - "Dockerfile.Worker"
       - ".github/workflows/worker-ecr.yml"
 
@@ -35,4 +38,14 @@ jobs:
           docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest  
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+      # ------------------------
+      # CD (deploy to ECS using GitHub Actions)
+      # ------------------------
+      - name: Deploy API to ECS
+        run: |
+          aws ecs update-service
+            --cluster ${{ secrets.ECS_CLUSTER_NAME }}
+            --service ${{ secrets.ECS_WORKER_SERVICE_NAME }}
+            --force-new-deployment
 

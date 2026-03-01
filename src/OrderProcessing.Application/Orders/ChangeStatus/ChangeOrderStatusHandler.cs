@@ -2,7 +2,7 @@ using OrderProcessing.Domain.Orders;
 
 namespace OrderProcessing.Application.Orders.ChangeStatus;
 
-public class ChangeOrderStatusHandler
+public class ChangeOrderStatusHandler : IChangeOrderStatusHandler
 {
     private readonly IOrderRepository _repository;
 
