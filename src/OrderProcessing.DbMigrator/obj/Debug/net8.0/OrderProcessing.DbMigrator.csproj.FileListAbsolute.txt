@@ -57,3 +57,4 @@ C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.DbMigrato
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.DbMigrator\obj\Debug\net8.0\OrderProcessing.DbMigrator.pdb
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.DbMigrator\obj\Debug\net8.0\OrderProcessing.DbMigrator.genruntimeconfig.cache
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.DbMigrator\obj\Debug\net8.0\ref\OrderProcessing.DbMigrator.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.DbMigrator\obj\Debug\net8.0\OrderProcessing.DbMigrator.sourcelink.json

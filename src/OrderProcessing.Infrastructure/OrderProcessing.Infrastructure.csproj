@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrderProcessing.Application\OrderProcessing.Application.csproj" />
+    <ProjectReference Include="..\OrderProcessing.Domain\OrderProcessing.Domain.csproj" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2">

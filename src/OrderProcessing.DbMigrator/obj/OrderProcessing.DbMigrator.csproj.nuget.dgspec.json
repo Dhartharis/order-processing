@@ -46,6 +46,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -224,6 +230,9 @@
             "projectReferences": {
               "C:\\Users\\spren\\Documents\\Proyectos\\OrderProcessing\\src\\OrderProcessing.Application\\OrderProcessing.Application.csproj": {
                 "projectPath": "C:\\Users\\spren\\Documents\\Proyectos\\OrderProcessing\\src\\OrderProcessing.Application\\OrderProcessing.Application.csproj"
+              },
+              "C:\\Users\\spren\\Documents\\Proyectos\\OrderProcessing\\src\\OrderProcessing.Domain\\OrderProcessing.Domain.csproj": {
+                "projectPath": "C:\\Users\\spren\\Documents\\Proyectos\\OrderProcessing\\src\\OrderProcessing.Domain\\OrderProcessing.Domain.csproj"
               }
             }
           }

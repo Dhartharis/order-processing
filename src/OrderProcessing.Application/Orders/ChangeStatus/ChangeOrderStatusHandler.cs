@@ -1,5 +1,3 @@
-using OrderProcessing.Domain.Orders;
-
 namespace OrderProcessing.Application.Orders.ChangeStatus;
 
 public class ChangeOrderStatusHandler : IChangeOrderStatusHandler

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using OrderProcessing.Application.Orders;
 using OrderProcessing.Domain.Orders;
 
 namespace OrderProcessing.Infrastructure.Orders;

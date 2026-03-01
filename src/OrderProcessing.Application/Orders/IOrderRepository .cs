@@ -1,4 +1,6 @@
-namespace OrderProcessing.Domain.Orders;
+using OrderProcessing.Domain.Orders;
+
+namespace OrderProcessing.Application.Orders;
 
 public interface IOrderRepository
 {

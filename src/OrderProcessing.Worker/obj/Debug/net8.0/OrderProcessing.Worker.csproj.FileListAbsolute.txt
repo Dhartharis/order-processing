@@ -59,3 +59,4 @@ C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Worker\ob
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Worker\obj\Debug\net8.0\OrderProcessing.Worker.pdb
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Worker\obj\Debug\net8.0\OrderProcessing.Worker.genruntimeconfig.cache
 C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Worker\obj\Debug\net8.0\ref\OrderProcessing.Worker.dll
+C:\Users\spren\Documents\Proyectos\OrderProcessing\src\OrderProcessing.Worker\obj\Debug\net8.0\OrderProcessing.Worker.sourcelink.json
