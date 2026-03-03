@@ -48,4 +48,4 @@ jobs:
             --cluster ${{ secrets.ECS_CLUSTER_NAME }} \
             --service ${{ secrets.ECS_WORKER_SERVICE_NAME }} \
             --force-new-deployment
-
+ 
