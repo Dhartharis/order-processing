@@ -9,6 +9,14 @@ data "aws_subnets" "default" {
   }
 }
 
+data "aws_ecs_cluster" "existing" {
+  cluster_name = "order-cluster"
+}
+
+data "aws_iam_role" "ecs_execution_role" {
+  name = "ecsTaskExecutionRole"
+}
+
 resource "aws_security_group" "rds" {
   name        = "orderprocessing-rds-sg"
   description = "RDS access"
@@ -64,8 +72,7 @@ resource "aws_ecs_task_definition" "api" {
   network_mode             = "awsvpc"
   cpu                      = "256"
   memory                   = "512"
-  execution_role_arn       = aws_iam_role.ecs_execution_role.arn
-  task_role_arn            = aws_iam_role.ecs_task_role.arn
+  execution_role_arn       = data.aws_iam_role.ecs_execution_role.arn
 
   container_definitions = jsonencode([
     {
@@ -75,27 +82,15 @@ resource "aws_ecs_task_definition" "api" {
 
       portMappings = [
         {
-          containerPort = 80
+          containerPort = 8080
           protocol      = "tcp"
         }
       ]
 
-      environment = [
+      secrets = [
         {
-          name  = "DB_HOST"
-          value = aws_db_instance.postgres.address
-        },
-        {
-          name  = "DB_NAME"
-          value = aws_db_instance.postgres.db_name
-        },
-        {
-          name  = "DB_USER"
-          value = var.db_username
-        },
-        {
-          name  = "DB_PASSWORD"
-          value = var.db_password
+          name      = "ConnectionStrings__Default"
+          valueFrom = aws_secretsmanager_secret.orderprocessing_db.arn
         }
       ]
 
@@ -109,4 +104,117 @@ resource "aws_ecs_task_definition" "api" {
       }
     }
   ])
+}
+
+resource "aws_secretsmanager_secret" "orderprocessing_db" {
+  name = "orderprocessing/db/connection"
+}
+
+resource "aws_secretsmanager_secret_version" "orderprocessing_db" {
+  secret_id = aws_secretsmanager_secret.orderprocessing_db.id
+
+  secret_string = format(
+    "Host=%s;Port=5432;Database=%s;Username=%s;Password=%s",
+    aws_db_instance.postgres.address,
+    aws_db_instance.postgres.db_name,
+    var.db_username,
+    var.db_password
+  )
+}
+
+resource "aws_security_group" "alb" {
+  name   = "orderprocessing-alb-sg"
+  vpc_id = data.aws_vpc.default.id
+
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_lb" "api" {
+  name               = "orderprocessing-api-alb"
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.alb.id]
+  subnets            = data.aws_subnets.default.ids
+}
+
+resource "aws_lb_target_group" "api" {
+  name        = "orderprocessing-api-tg"
+  port        = 8080
+  protocol    = "HTTP"
+  vpc_id      = data.aws_vpc.default.id
+  target_type = "ip"
+
+  health_check {
+    path = "/health"
+    port = "traffic-port"
+  }
+}
+
+resource "aws_lb_listener" "api" {
+  load_balancer_arn = aws_lb.api.arn
+  port              = 8080
+  protocol          = "HTTP"
+
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.api.arn
+  }
+}
+
+resource "aws_ecs_service" "api" {
+  name            = "order-api"
+  cluster         = data.aws_ecs_cluster.existing.id
+  task_definition = aws_ecs_task_definition.api.arn
+  desired_count   = 1
+  launch_type     = "FARGATE"
+
+  network_configuration {
+    subnets         = data.aws_subnets.default.ids
+    security_groups = [aws_security_group.ecs_api.id]
+    assign_public_ip = true
+  }
+
+  load_balancer {
+    target_group_arn = aws_lb_target_group.api.arn
+    container_name   = "api"
+    container_port   = 8080
+  }
+
+  depends_on = [
+    aws_lb_listener.api
+  ]
+}
+
+resource "aws_security_group" "ecs_api" {
+  name   = "orderprocessing-api-sg"
+  vpc_id = data.aws_vpc.default.id
+
+  ingress {
+    from_port       = 8080
+    to_port         = 8080
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+output "api_url" {
+  value = "http://${aws_lb.api.dns_name}:8080"
 }

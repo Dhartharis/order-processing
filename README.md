@@ -1,75 +1,58 @@
-# Order Processing API
+# 📦 Order Processing Ecosystem (.NET 8 + AWS)
 
-End-to-end backend project using .NET 8 and AWS.
+[![.NET 8](https://img.shields.io/badge/.NET-8.0-blue.svg)](https://dotnet.microsoft.com/download/dotnet/8.0)
+[![AWS ECS](https://img.shields.io/badge/AWS-ECS%20Fargate-orange.svg)](https://aws.amazon.com/ecs/)
+[![Terraform](https://img.shields.io/badge/IAC-Terraform-623ce4.svg)](https://www.terraform.io/)
 
-This project demonstrates a production-style architecture with a separated API, background worker and database migrator.
-
----
-
-## Architecture
-
-- API Gateway
-- AWS Lambda (.NET 8) – Order API
-- ECS Fargate – async background worker
-- ECS Fargate – database migrator (one-shot task)
-- PostgreSQL (Amazon RDS)
-- Terraform for infrastructure
-- CloudWatch logs
-- GitHub Actions for CI
+A production-grade, distributed backend architecture designed for scalability and high availability. This project showcases a modern approach to handling order lifecycles using **Clean Architecture** and **Cloud-Native** patterns.
 
 ---
 
-## Projects
+## 🏗 Architectural Highlights
 
-Located under `src/`:
+This ecosystem is decoupled into specialized components to optimize resource allocation and maintainability:
 
-- `OrderProcessing.Api` – HTTP API
-- `OrderProcessing.Application` – application layer
-- `OrderProcessing.Domain` – domain model
-- `OrderProcessing.Infrastructure` – EF Core + PostgreSQL
-- `OrderProcessing.DbMigrator` – one-time database creation and migrations
-
----
-
-## Database initialization
-
-Before starting the API service, the database must be created and migrated.
-
-This is done by running the ECS task:
-
-- `order-db-migrator`
-
-The migrator performs:
-
-- Creates the database if it does not exist
-- Applies all EF Core migrations
+* **Order API (Lambda/ECS):** High-availability entry point for order commands and queries.
+* **Async Background Worker (ECS Fargate):** Dedicated worker service for processing long-running business logic without blocking the user-facing API.
+* **Infrastructure as Code (Terraform):** Fully automated provisioning of AWS resources (RDS, ECS, IAM).
+* **Resilient Database Strategy:** Independent **Database Migrator** task to ensure schema consistency in multi-instance deployments before scaling services.
 
 ---
 
-## Deployment flow
+## 🛠 Tech Stack & Tools
 
-1. Run the ECS task `order-db-migrator`
-2. Start the `order-api` service (set desired count to 1)
-
----
-
-## CI pipeline
-
-GitHub Actions builds and validates three Docker images:
-
-- `order-api`
-- `order-worker`
-- `order-db-migrator`
-
-Each image is built independently to validate build context and Docker configuration.
+| Category | Technology |
+| :--- | :--- |
+| **Backend** | .NET 8 (C#), Entity Framework Core |
+| **Cloud** | AWS (ECS Fargate, Lambda, RDS, CloudWatch) |
+| **Infrastructure** | Terraform, Docker |
+| **Database** | PostgreSQL (Npgsql) |
+| **CI/CD** | GitHub Actions (Multi-image validation) |
 
 ---
 
-## Stack
+## 📂 Project Structure (Clean Architecture)
 
-- .NET 8
-- Entity Framework Core
-- PostgreSQL (Npgsql)
-- AWS ECS Fargate
-- Amazon RDS
-- Terraform
+Organized under `src/` to follow the Separation of Concerns principle:
+
+- `OrderProcessing.Domain`: Core business entities and logic (Zero dependencies).
+- `OrderProcessing.Application`: Use cases, DTOs, and interface definitions.
+- `OrderProcessing.Infrastructure`: Data access (EF Core), external integrations, and AWS implementations.
+- `OrderProcessing.Api`: REST entry point and request orchestration.
+- `OrderProcessing.DbMigrator`: Specialized one-shot task for idempotent database initialization.
+
+---
+
+## 🚀 Deployment & CI Workflow
+
+The project utilizes a robust **GitHub Actions** pipeline that builds and validates three independent Docker images: `order-api`, `order-worker`, and `order-db-migrator`.
+
+### Deployment Sequence:
+1.  **Schema Migration:** Execute the `order-db-migrator` ECS task to verify/update the PostgreSQL schema.
+2.  **Service Activation:** Spin up `order-api` and `order-worker` instances once the data layer is validated.
+
+---
+
+## 🧪 Testing (Coming Soon / In Progress)
+- [x] **Unit Tests:** Validating Domain Model and Application Use Cases.
+- [ ] **Integration Tests:** Database constraint and API contract verification.

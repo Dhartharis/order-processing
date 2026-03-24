@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using OrderProcessing.Infrastructure;
 using OrderProcessing.Application;
 
@@ -23,4 +24,9 @@ app.MapControllers();
 
 app.MapGet("/health", () => Results.Ok("Healthy"));
 app.Run();
+
+public partial class Program
+{
+    // Exposed for testing via WebApplicationFactory
+}
 

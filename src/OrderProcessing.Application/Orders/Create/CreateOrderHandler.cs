@@ -13,6 +13,9 @@ public class CreateOrderHandler: ICreateOrderHandler
 
     public async Task<Guid> Handle(CreateOrderCommand command)
     {
+        if (string.IsNullOrWhiteSpace(command.CustomerName))
+            throw new ArgumentException("Customer name is required");
+
         var order = new Order(command.CustomerName);
         
         await _repository.AddAsync(order);
