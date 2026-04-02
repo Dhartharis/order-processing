@@ -53,6 +53,6 @@ The project utilizes a robust **GitHub Actions** pipeline that builds and valida
 
 ---
 
-## 🧪 Testing (Coming Soon / In Progress)
+## 🧪 Testing (In Progress)
 - [x] **Unit Tests:** Validating Domain Model and Application Use Cases.
 - [ ] **Integration Tests:** Database constraint and API contract verification.
